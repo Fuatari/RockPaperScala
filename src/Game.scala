@@ -29,7 +29,7 @@ class Game {
 
       div()
 
-      if (playerHandString.equalsIgnoreCase(aiHandString)) println("It's a draw.")
+      if (playerHandString.equalsIgnoreCase(aiHandString)) println("It's a draw!")
       else {
         var handResult = result(playerHandString, aiHandString)
       }
