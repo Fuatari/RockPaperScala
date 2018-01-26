@@ -9,8 +9,8 @@ class Game {
     while (playerScore < winningScore && aiScore < winningScore) {
       div()
 
-      print("Choose your hand (rock, paper, scissors): ")
-      val playerHandString = scala.io.StdIn.readLine()
+      print("Rock, Paper or Scissors? ")
+      val playerHandString = scala.io.StdIn.readLine().toLowerCase()
 
       div()
 
@@ -30,9 +30,7 @@ class Game {
       div()
 
       if (playerHandString.equalsIgnoreCase(aiHandString)) println("It's a draw!")
-      else {
-        var handResult = result(playerHandString, aiHandString)
-      }
+      else result(playerHandString, aiHandString)
 
       println(playerName + ": " + playerScore)
       println("Computer: " + aiScore)
