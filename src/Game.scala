@@ -2,30 +2,30 @@ class Game {
   def div() = println("--------------------------------")
   val AI = new AI
   
-  val playerName = ""
-  val aiStrength = ""
-  var roundCount = -1
+  var playerName = ""
+  var aiStrength = ""
+  var roundCount: Double = -1
 
   def init = {
     print("Enter your name: ")
-    val playerName = scala.io.StdIn.readLine
+    playerName = scala.io.StdIn.readLine
     print("Opponent difficulty; easy, medium or hard? ")
-    val aiStrength = scala.io.StdIn.readLine.toLowerCase
+    aiStrength = scala.io.StdIn.readLine.toLowerCase
     print("Maximum rounds to play? ")
-    val roundCount = scala.io.StdIn.readDouble
+    roundCount = scala.io.StdIn.readDouble
   }
 
   def play = {
     var playerScore = 0
     var aiScore = 0
     var round = 1
-    var aiName = AI.getName(aiStrength)
+    val aiName = AI.getName(aiStrength)
     val winningScore = math.ceil(roundCount / 2).toInt
 
     while (playerScore < winningScore && aiScore < winningScore) {
       div()
 
-      print("Round " + round)
+      println("Round " + round)
       print("Rock, Paper or Scissors? ")
       val playerHandString = scala.io.StdIn.readLine.toLowerCase
 
@@ -34,7 +34,7 @@ class Game {
       println(playerName + " chose " + playerHandString)
 
       var aiHandString = ""
-      AI.aiTurn(aiStrength, playerHandString) match {
+      AI.aiTurn(aiStrength) match {
         case 0 => aiHandString = "rock"
         case 1 => aiHandString = "paper"
         case 2 => aiHandString = "scissors"
@@ -49,6 +49,7 @@ class Game {
       println(playerName + ": " + playerScore)
       println(aiName + ": " + aiScore)
       round += 1
+      AI.updatePlayerCount(playerHandString)
 
       if (playerScore == winningScore) print(playerName + " wins!")
       else if (aiScore == winningScore) print(aiName + " wins!")
